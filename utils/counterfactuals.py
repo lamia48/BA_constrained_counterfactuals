@@ -6,8 +6,6 @@ import numpy as np
 from utils.model import *
 
 
-
-
 def fix_features(feature_indices, X_train, instance):
     min_vals = X_train.min(axis=0).copy()
     max_vals = X_train.max(axis=0).copy()
@@ -18,7 +16,7 @@ def fix_features(feature_indices, X_train, instance):
     return min_vals, max_vals
 
 
-def perform_cem(datapoint_indice, constraints):
+def perform_cem(datapoint_indice, constraints, kappa, beta):
     model, scaler, data = load_model()
     X_train = data['X_train']
     X_test = data['X_test']
@@ -41,8 +39,8 @@ def perform_cem(datapoint_indice, constraints):
         predict,
         mode='PN',
         shape=instance.shape,
-        kappa=0.2,
-        beta=0.02,
+        kappa=kappa,
+        beta=beta,
         gamma=0.0,
         c_init=1.0,
         c_steps=10,
@@ -78,7 +76,7 @@ def perform_cem(datapoint_indice, constraints):
     return df
 
 
-def perform_cfproto(datapoint_indice, constraints):
+def perform_cfproto(datapoint_indice, constraints, kappa, beta):
     model, scaler, data = load_model()
     X_train = data['X_train']
     X_test = data['X_test']
@@ -100,8 +98,8 @@ def perform_cfproto(datapoint_indice, constraints):
     cf = CounterfactualProto(
         predict,
         shape=instance.shape,
-        kappa=0.3,
-        beta=0.02,
+        kappa=kappa,
+        beta=beta,
         gamma=0,
         theta=0,
         max_iterations=1000,
@@ -144,7 +142,7 @@ def perform_cfproto(datapoint_indice, constraints):
     return df
 
 
-def perform_cfproto_kdtrees(datapoint_indice, constraints):
+def perform_cfproto_kdtrees(datapoint_indice, constraints, kappa, beta, theta):
     model, scaler, data = load_model()
     X_train = data['X_train']
     X_test = data['X_test']
@@ -167,10 +165,10 @@ def perform_cfproto_kdtrees(datapoint_indice, constraints):
         predict,
         shape=instance.shape,
         use_kdtree=True,
-        kappa=0.7,
-        beta=0.01,
+        kappa=kappa,
+        beta=beta,
         gamma=0,
-        theta=0,
+        theta=theta,
         max_iterations=1000,
         ae_model=None,
         enc_model=None,

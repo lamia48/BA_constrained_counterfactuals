@@ -113,26 +113,21 @@ def print_table_3sliders(df, val1, val2, val3, methodname):
 
     # Slider 1
     with col1:
-        val1_val = st.slider(
-            val1,
-            float(df[val1].min()),
-            float(df[val1].max()),
-            float(df[val1].min()),
-            step=0.1,
+        val1_val = st.select_slider(val1,
+            options=[0, 0.1, 0.3, 0.5],
+            value=0,
             key=f"{methodname}_{val1}_slider"
         )
-        options2 = sorted(df[val2].unique())
         val2_val = st.select_slider(
             val2,
-            options=options2,
-            value=options2[0],
+            options=[0, 0.01, 0.03, 0.05],
+            value=0,
             key=f"{methodname}_{val2}_slider"
         )
-        options3 = sorted(df[val3].unique())
         val3_val = st.select_slider(
             val3,
-            options=options3,
-            value=options3[0],
+            options=[0, 0.1, 0.5, 1],
+            value=0,
             key=f"{methodname}_{val3}_slider"
         )
 
