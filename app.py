@@ -58,17 +58,17 @@ if app_mode == 'Counterfactuals':
                 elif selected_config_maxim == 'success rate':
                     df = perform_cem(selected_index, unselected_indices, 0.7, 0.0)
                 elif selected_config_maxim == 'trade-off':
-                    df = perform_cem(selected_index, unselected_indices, 0.2, 0.02)
+                    df = perform_cem(selected_index, unselected_indices, 0.0, 0.02)
 
             elif selected_method == 'CFProto':
                 if selected_config_maxim == 'sparsity & proximity':
-                    df = perform_cfproto(selected_index, unselected_indices, 0.0, 0.05)
+                    df = perform_cfproto(selected_index, unselected_indices, 0.7, 0.05)
                 elif selected_config_maxim == 'proximity & success rate':
                     df = perform_cfproto(selected_index, unselected_indices, 0.0, 0.0)
                 elif selected_config_maxim == 'success rate':
                     df = perform_cfproto(selected_index, unselected_indices, 0.7, 0.0)
                 elif selected_config_maxim == 'trade-off':
-                    df = perform_cfproto(selected_index, unselected_indices, 0.3, 0.02)
+                    df = perform_cfproto(selected_index, unselected_indices, 0.0, 0.02)
 
             else:
                 if selected_config_maxim == 'sparsity & proximity':
@@ -76,7 +76,7 @@ if app_mode == 'Counterfactuals':
                 elif selected_config_maxim == 'proximity & success rate':
                     df = perform_cfproto_kdtrees(selected_index, unselected_indices, 0.0, 0.0, 0.1)
                 elif selected_config_maxim == 'success rate':
-                    df = perform_cfproto_kdtrees(selected_index, unselected_indices, 0.3, 0.0, 0.5)
+                    df = perform_cfproto_kdtrees(selected_index, unselected_indices, 0.0, 0.0, 0.5)
                 elif selected_config_maxim == 'trade-off':
                     df = perform_cfproto_kdtrees(selected_index, unselected_indices, 0.0, 0.03, 0.1)
 
