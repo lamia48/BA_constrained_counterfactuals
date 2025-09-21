@@ -40,7 +40,7 @@ if app_mode == 'Counterfactuals':
     st.subheader('Selected instance:')
     st.data_editor(X_test.iloc[[selected_index]], use_container_width=True)
 
-    #st.dataframe(df[selected_columns])
+
     if st.sidebar.button('Generate counterfactual'):
         if selected_method == 'None':
             st.error('Select method for generating counterfactual!')
